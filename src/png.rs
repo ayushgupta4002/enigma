@@ -1,13 +1,13 @@
-use std::fmt;
+use std::{fmt, fs};
 
-use crate::{chunk::Chunk, chunk_type};
+use crate::{chunk::Chunk};
 type Result<T> = std::result::Result<T, String>;
 
 
 
 
 #[derive(Debug)]
-struct Png {
+pub struct Png {
     chunks: Vec<Chunk>,
 }
 
@@ -16,6 +16,11 @@ impl Png {
 
     pub fn from_chunks(chunks : Vec<Chunk>)-> Self{
         return Png { chunks }
+    }
+
+    pub fn from_file(file_path: &str) -> Result<Self> {
+        let bytes = fs::read(file_path).map_err(|e| e.to_string())?;
+        Png::try_from(bytes.as_slice())
     }
 
     pub fn append_chunk(&mut self , chunk :Chunk ) {
