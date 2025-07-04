@@ -4,8 +4,6 @@ use crate::{chunk::Chunk};
 type Result<T> = std::result::Result<T, String>;
 
 
-
-
 #[derive(Debug)]
 pub struct Png {
     chunks: Vec<Chunk>,

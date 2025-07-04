@@ -1,5 +1,7 @@
+#![allow(warnings)]
 use crate::args::{Cli, Commands};
 use clap::Parser;
+
 
 mod args;
 mod chunk;
